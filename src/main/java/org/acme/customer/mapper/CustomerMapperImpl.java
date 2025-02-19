@@ -9,35 +9,34 @@ import jakarta.enterprise.context.RequestScoped;
 @RequestScoped
 public class CustomerMapperImpl implements ICustomerMapperImpl{
     @Override
-    public CustomerEntity fromCreate(CreateCustomerDto createCustomerDto, String demonym) {
-        var CustomerEntity = new CustomerEntity();
-        CustomerEntity.setFirstName(createCustomerDto.firstName());
-        CustomerEntity.setMiddleName(createCustomerDto.middleName());
-        CustomerEntity.setLastName(createCustomerDto.lastName());
-        CustomerEntity.setSecondLastName(createCustomerDto.secondLastName());
-        CustomerEntity.setEmail(createCustomerDto.email());
-        CustomerEntity.setAddress(createCustomerDto.address());
-        CustomerEntity.setPhone(createCustomerDto.phone());
-        CustomerEntity.setCountry(createCustomerDto.country());
-        CustomerEntity.setDemonym(demonym);
+    public CustomerEntity fromCreate(CreateCustomerDto createCustomerDto) {
+        var customer = new CustomerEntity();
+        customer.setFirstName(createCustomerDto.firstName());
+        customer.setMiddleName(createCustomerDto.middleName());
+        customer.setLastName(createCustomerDto.lastName());
+        customer.setSecondLastName(createCustomerDto.secondLastName());
+        customer.setEmail(createCustomerDto.email());
+        customer.setAddress(createCustomerDto.address());
+        customer.setPhone(createCustomerDto.phone());
+        customer.setCountry(createCustomerDto.country());
+        customer.setDemonym(createCustomerDto.demonym());
 
-        return CustomerEntity;
+        return customer;
     }
 
     @Override
-    public CustomerEntity fromUpdate(Long id, UpdateCustomerDto updateCustomerDto, String demonym) {
-        var panacheEntity = CustomerEntity.findById(id);
-        var Customer = CustomerEntity.class.cast(panacheEntity);
-        if(Customer == null) {
+    public CustomerEntity fromUpdate(Long id, UpdateCustomerDto updateCustomerDto) {
+        var entity = CustomerEntity.findById(id);
+        var customer = CustomerEntity.class.cast(entity);
+        if(customer == null) {
             return null;
         }
         
-        Customer.setEmail(updateCustomerDto.email());
-        Customer.setAddress(updateCustomerDto.address());
-        Customer.setPhone(updateCustomerDto.phone());
-        Customer.setCountry(updateCustomerDto.country());
-        Customer.setDemonym(demonym);
+        customer.setEmail(updateCustomerDto.email());
+        customer.setAddress(updateCustomerDto.address());
+        customer.setPhone(updateCustomerDto.phone());
+        customer.setCountry(updateCustomerDto.country());
 
-        return Customer;
+        return customer;
     }
 }

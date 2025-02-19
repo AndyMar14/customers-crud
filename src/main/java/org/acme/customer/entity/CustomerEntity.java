@@ -1,7 +1,5 @@
 package org.acme.customer.entity;
 
-import org.hibernate.annotations.processing.Pattern;
-
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

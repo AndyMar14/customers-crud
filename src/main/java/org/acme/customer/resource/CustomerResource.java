@@ -1,5 +1,8 @@
 package org.acme.customer.resource;
 
+import org.acme.customer.mapper.ICustomerMapperImpl;
+
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -15,6 +18,14 @@ import jakarta.ws.rs.core.MediaType;
 @Produces(MediaType.TEXT_PLAIN)
 @Transactional
 public class CustomerResource {
+
+    private ICustomerMapperImpl customerMapper;
+
+    @Inject
+    public CustomerResource(ICustomerMapperImpl customerMapper) {
+        this.customerMapper = customerMapper;
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public String create() {
