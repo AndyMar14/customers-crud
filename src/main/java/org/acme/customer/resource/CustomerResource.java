@@ -1,5 +1,6 @@
 package org.acme.customer.resource;
 
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -12,6 +13,7 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("api/customer")
 @Produces(MediaType.TEXT_PLAIN)
+@Transactional
 public class CustomerResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
