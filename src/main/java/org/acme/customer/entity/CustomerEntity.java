@@ -14,10 +14,6 @@ import jakarta.validation.constraints.NotBlank;
 @Table(name="customers")
 public class CustomerEntity extends PanacheEntity {
 
-    @Id
-    @GeneratedValue
-    private String id;
-
     @NotBlank
     @Column(nullable = false)
     private String firstName;
@@ -50,11 +46,11 @@ public class CustomerEntity extends PanacheEntity {
     @Column(nullable = true)
     private String demonym;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

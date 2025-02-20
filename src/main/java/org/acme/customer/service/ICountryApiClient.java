@@ -12,8 +12,8 @@ import jakarta.ws.rs.core.MediaType;
 @RegisterRestClient(configKey = "rest-countries-api")
 @ApplicationScoped
 public interface ICountryApiClient {
-    @Path("/alpha/{countryCode}")
+    @Path("/alpha/{country}")
     @Produces(MediaType.APPLICATION_JSON)
     @GET
-    String getCountryByCode(@PathParam("countryCode") String countryCode);
+    String getCountryByCode(@PathParam("country") String country);
 }
