@@ -15,33 +15,50 @@ import jakarta.inject.Inject;
 public class CountryService implements ICountryService {
     @Inject
     @RestClient
-    ICountryApiClient customerService;
+    ICountryApiClient countryApiClient;
 
     @Override
     public String getDemonymByCountry(String countryCode) {
         try {
-            String countryJson = customerService.getCountryByCode(countryCode);
+            // Llamamos a la API para obtener los datos del país
+            String countryJson = countryApiClient.getCountryByCode(countryCode);
+
             if (countryJson == null || countryJson.isBlank()) {
                 throw new NoSuchElementException("Código de país no encontrado: " + countryCode);
             }
 
+            // Parseamos la respuesta como un array de JSON
             ObjectMapper mapper = new ObjectMapper();
-            JsonNode rootNode = mapper.readTree(countryJson);
+            JsonNode rootArray = mapper.readTree(countryJson);
 
-            if (rootNode.isEmpty() || rootNode.get("demonyms") == null) {
+            // Verificamos que la respuesta no esté vacía
+            if (!rootArray.isArray() || rootArray.isEmpty()) {
+                throw new NoSuchElementException("No se encontró información para el país: " + countryCode);
+            }
+
+            // Accedemos al primer objeto del array
+            JsonNode countryData = rootArray.get(0);
+
+            // Validamos que tenga la clave "demonyms"
+            if (!countryData.has("demonyms")) {
                 throw new NoSuchElementException("No se encontró el gentilicio para el país: " + countryCode);
             }
 
-            JsonNode demonymNode = rootNode.get("demonyms");
-            JsonNode engNode = demonymNode.get("eng");
-            if (engNode == null || engNode.get("f") == null) {
+            // Obtenemos el nodo "demonyms"
+            JsonNode demonymNode = countryData.get("demonyms");
+
+            // Buscamos el gentilicio en inglés (femenino)
+            if (!demonymNode.has("eng") || !demonymNode.get("eng").has("f")) {
                 throw new NoSuchElementException("No se encontró el gentilicio en inglés para el país: " + countryCode);
             }
 
-            return engNode.get("f").asText();
-        } catch (JsonProcessingException e) {
-            return null;
+            String demonym = demonymNode.get("eng").get("f").asText();
+            return demonym;
+
+        }catch (NoSuchElementException e) {
+            throw e; // Relanzamos la excepción para que el controlador la maneje
+        } catch (Exception e) {
+            throw new RuntimeException("Error inesperado al obtener el gentilicio", e);
         }
     }
-    
 }

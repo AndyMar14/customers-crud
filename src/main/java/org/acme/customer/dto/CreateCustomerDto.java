@@ -34,8 +34,5 @@ public record  CreateCustomerDto (
     
     @NotBlank
     @Size(max = 2)
-    String country,
-    
-    @Size(max = 50)
-    String demonym
+    String country
 ) {}

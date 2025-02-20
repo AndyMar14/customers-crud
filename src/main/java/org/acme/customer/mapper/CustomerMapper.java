@@ -7,9 +7,9 @@ import org.acme.customer.entity.CustomerEntity;
 import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped
-public class CustomerMapperImpl implements ICustomerMapperImpl{
+public class CustomerMapper implements ICustomerMapper{
     @Override
-    public CustomerEntity fromCreate(CreateCustomerDto createCustomerDto) {
+    public CustomerEntity fromCreate(CreateCustomerDto createCustomerDto, String demonym) {
         var customer = new CustomerEntity();
         customer.setFirstName(createCustomerDto.firstName());
         customer.setMiddleName(createCustomerDto.middleName());
@@ -19,13 +19,13 @@ public class CustomerMapperImpl implements ICustomerMapperImpl{
         customer.setAddress(createCustomerDto.address());
         customer.setPhone(createCustomerDto.phone());
         customer.setCountry(createCustomerDto.country());
-        customer.setDemonym(createCustomerDto.demonym());
+        customer.setDemonym(demonym);
 
         return customer;
     }
 
     @Override
-    public CustomerEntity fromUpdate(Long id, UpdateCustomerDto updateCustomerDto) {
+    public CustomerEntity fromUpdate(Long id, UpdateCustomerDto updateCustomerDto, String demonym) {
         var entity = CustomerEntity.findById(id);
         var customer = CustomerEntity.class.cast(entity);
         if(customer == null) {
@@ -36,6 +36,7 @@ public class CustomerMapperImpl implements ICustomerMapperImpl{
         customer.setAddress(updateCustomerDto.address());
         customer.setPhone(updateCustomerDto.phone());
         customer.setCountry(updateCustomerDto.country());
+        customer.setDemonym(demonym);
 
         return customer;
     }
