@@ -2,6 +2,9 @@ package org.acme.customer.exception;
 
 import java.util.NoSuchElementException;
 
+import org.acme.customer.dto.ErrorMessage;
+
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
@@ -11,8 +14,10 @@ public class NotFoundExceptionMapper implements ExceptionMapper<NoSuchElementExc
 
     @Override
     public Response toResponse(NoSuchElementException exception) {
+        ErrorMessage error = new ErrorMessage("Recurso no encontrado: " + exception.getMessage());
         return Response.status(Response.Status.NOT_FOUND)
-                .entity("Recurso no encontrado: " + exception.getMessage())
+                .entity(error)
+                .type(MediaType.APPLICATION_JSON)
                 .build();
     }
 }
