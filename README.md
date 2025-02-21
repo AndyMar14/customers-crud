@@ -32,6 +32,9 @@ Para correr los test ejecute el siguiente comando:
 ### Diagrama  de Clases
 ![Diagrama de Clases](src/assets/img/customer.png)
 
+### Diagrama  de Arquitectura
+![Diagrama de Clases](src/assets/img/diagrama_arquitectura.png)
+
 ## Estructura del Proyecto
 
 ## 📂 `java/org/acme/customer/`
