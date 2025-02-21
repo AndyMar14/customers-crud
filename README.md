@@ -92,7 +92,8 @@ La aplicación utiliza una API externa para obtener información sobre los país
 #### **📌 API utilizada**
 - **Endpoint:** `https://restcountries.com/v3.1/alpha/{countryCode}`
 - **Función:** Devuelve información sobre un país específico a partir de su código ISO 3166-1 alfa-2.
-## API Reference
+
+## Endpoints
 
 ### 🔹 Get all customers
 
@@ -110,7 +111,7 @@ Obtiene la lista de clientes.
 ### 🔹 Get customers by country
 
 ```http
-  GET /api/items/${id}
+  GET /api/getAllByCountry/{country}
 ```
 
 **Descripción:**  
