@@ -172,7 +172,7 @@ Actualiza los datos de un cliente existente.
 | :--------- | :------- | :---------- |
 | `id`       | `long`   | **Obligatorio**. ID del cliente a actualizar. |
 | `email`    | `string` | **Obligatorio**. Nuevo correo del cliente. |
-| `name`     | `string` | **Obligatorio**. Nuevo nombre del cliente. |
+| `address`  | `string` | **Obligatorio**. Nueva dirección del cliente. |
 | `phone`    | `string` | **Obligatorio**. Nuevo teléfono del cliente. |
 | `country`  | `string` | **Obligatorio**. Nuevo país del cliente. |
 
