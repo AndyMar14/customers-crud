@@ -29,6 +29,7 @@ Para correr los test ejecute el siguiente comando:
 
 ## Diagramas
 
+### Diagrama  de Clases
 ![Diagrama de Clases](src/assets/img/customer.png)
 
 ## Estructura del Proyecto
@@ -81,7 +82,8 @@ Para correr los test ejecute el siguiente comando:
 - **Propósito:** Contiene las pruebas automatizadas de la aplicación.
 - **Archivos:**  
   - `CustomerResourceTest.java`: Pruebas unitarias para los endpoints de `CustomerResource`.
-### 🌍 **Integración con API de países**
+
+## 🌍 **Integración con API de países**
 La aplicación utiliza una API externa para obtener información sobre los países y extraer su gentilicio.
 
 #### **📌 API utilizada**
