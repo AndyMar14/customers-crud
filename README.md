@@ -171,9 +171,10 @@ Actualiza los datos de un cliente existente.
 | Parámetro  | Tipo     | Descripción |
 | :--------- | :------- | :---------- |
 | `id`       | `long`   | **Obligatorio**. ID del cliente a actualizar. |
-| `email`    | `string` | **Opcional**. Nuevo correo del cliente. |
-| `name`     | `string` | **Opcional**. Nuevo nombre del cliente. |
-| `country`  | `string` | **Opcional**. Nuevo país del cliente. |
+| `email`    | `string` | **Obligatorio**. Nuevo correo del cliente. |
+| `name`     | `string` | **Obligatorio**. Nuevo nombre del cliente. |
+| `phone`    | `string` | **Obligatorio**. Nuevo teléfono del cliente. |
+| `country`  | `string` | **Obligatorio**. Nuevo país del cliente. |
 
 **Posibles respuestas:**
 - ✅ **200 OK** → Cliente actualizado con éxito.
