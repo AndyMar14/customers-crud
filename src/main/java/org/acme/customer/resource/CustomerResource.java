@@ -37,7 +37,7 @@ public class CustomerResource {
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(@Valid CreateCustomerDto createCustomerDto) {
-        if (CustomerEntity.find("email", createCustomerDto.email()).firstResult() != null) {
+        if (CustomerEntity.count("email", createCustomerDto.email()) > 0) {
             throw new BadRequestException("El correo electrónico ya está registrado.");
         }
         
@@ -95,9 +95,7 @@ public class CustomerResource {
     public Response deleteById(@PathParam("id") Long customerId) {
         boolean deleted = CustomerEntity.deleteById(customerId);
         if (!deleted) {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity("No fue encontrado el cliente con id: " + customerId)
-                    .build();
+            throw new NoSuchElementException("No fue encontrado el cliente con el siguiente id: " + customerId);
         }
         return Response.status(Response.Status.NO_CONTENT).build();
     }
