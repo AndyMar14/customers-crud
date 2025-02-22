@@ -3,7 +3,16 @@
 
 La Customer API es un servicio RESTful que permite la gestión de clientes dentro de un sistema. Proporciona endpoints para la creación, consulta, actualización y eliminación de clientes, asegurando la integridad de los datos mediante validaciones y transacciones. Esta API está diseñada para ser utilizada en sistemas que requieran administrar información de clientes con datos asociados a países.
 
+Resaltar que esta Api utiliza PostgreSql como motor de base de datos para persistir la información de los clientes.
+
 ## Correr la aplicacion en modo Dev
+
+En Primer lugar debemos cambiar nuestra configuración de base de datos en src\main\resources\application.properties:
+
+```shell script
+quarkus.datasource.username=usuario
+quarkus.datasource.password=contraseña
+```
 
 Puedes ejecutar tu aplicación en modo desarrollo, lo que permite el live coding, utilizando el siguiente comando:
 
